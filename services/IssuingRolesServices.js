@@ -96,6 +96,10 @@ class IssuingRolesServer extends IssuingRoleServices {
     this.callerServersRoles = this.GetServersIntersection(callerRoles, this.serversArray)
   }
 
+  IsServer() {
+    return this.serversArray.includes(this.serverRole?.value)
+  }
+
   CheckServerCompliance() {
     return this.callerServersRoles.includes(this.serverRole.value)
   }

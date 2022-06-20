@@ -164,6 +164,14 @@ module.exports = {
 
     const serverAdminRoleService = new IssuingRolesServer(interaction.member._roles, target._roles, adminRole, `${server}${serverNumber === 1 ? '' : serverNumber}`.trim())
 
+    if (!serverAdminRoleService.IsServer()){
+      await interaction.reply({
+        embeds: [ErrorEmbed('Данного сервера не существует', interaction)],
+        ephemeral: true
+      })
+      return false;
+    }
+
     if (!serverAdminRoleService.CheckHierarchy(serverAdminRoleService.callerAdminRolesObj.name, serverAdminRoleService.adminRoleObj.name)) {
       await interaction.reply(
         {
